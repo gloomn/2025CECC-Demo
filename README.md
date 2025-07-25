@@ -4,6 +4,8 @@
 본 프로젝트는 2025년 컴퓨터교육과 코딩 콘테스트를 위한 서버와 클라이언트입니다.
 기술 스택은 html, css, js이고, 웹 애플리케이션 프레임워크 electron.js를 사용하였습니다.
 
+C언어 컴파일러는 portable gcc를 사용하였습니다.
+
 
 ## Getting started
 
