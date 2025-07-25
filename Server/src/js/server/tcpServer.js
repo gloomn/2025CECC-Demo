@@ -126,7 +126,7 @@ function evaluateProblem(problemId, answer)
 {
   if(problemId == 1)
   {
-    if(answer == "1")
+    if(answer == "4")
     {
       return Math.floor(Math.random() * 4) + 1;
     }
@@ -137,6 +137,102 @@ function evaluateProblem(problemId, answer)
   }
 
   if(problemId == 2)
+  {
+    if(answer == '3')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 3)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 4)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 5)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 6)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 7)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 8)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 9)
+  {
+    if(answer == '1')
+    {
+      return Math.floor(Math.random() * 4) + 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+  if(problemId == 10)
   {
     if(answer == '1')
     {

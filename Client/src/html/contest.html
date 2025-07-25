@@ -43,26 +43,56 @@
         <div class="contentsProblem">
             <!-- 문제 1 -->
             <div id="1" class="problem">
-                <h2>문제 1: 이 텍스트는 문제 1입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <div class="problem-container">
+                    <h2>문제 1: 다음 중 const int* ptr 에 대해 설명으로 옳은 것은?</h2>
+                    <p>1) ptr이 가리키는 값을 바꿀 수 있다</p>
+                    <p>2) ptr 자체를 다른 주소로 바꿀 수 없다</p>
+                    <p>3) *ptr = 10; 은 허용된다</p>
+                    <p>4) ptr이 가리키는 값을 바꿀 수 없다</p>
+                </div>
+
+                <br>
+                <textarea id="codeArea" class="dandap" placeholder="답 작성(띄어쓰기 x, 숫자만)"></textarea><br>
+                <br>
                 <button class="submit-btn" onclick="showNextProblem('2')">제출 및 다음 문제</button>
+                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
             </div>
 
             <!-- 문제 2 -->
             <div id="2" class="problem">
-                <h2>문제 2: 이 텍스트는 문제 2입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <div class="problem-container">
+                    <h2>문제 2: 다음 중 문자열 상수에 값을 대입하면 발생하는 문제는?</h2>
+                    <p>1) 컴파일 에러</p>
+                    <p>2) 런타임 에러</p>
+                    <p>3) 세그멘테이션 폴트</p>
+                    <p>4) 아무 문제 없음</p>
+                </div>
+
+                <br>
+                <textarea id="codeArea" class="dandap" placeholder="답 작성(띄어쓰기 x, 숫자만)"></textarea><br>
+                <br>
                 <button class="submit-btn" onclick="showNextProblem('3')">제출 및 다음 문제</button>
+                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="3" class="problem">
-                <h2>문제 3: 이 텍스트는 문제 3입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <div class="problem-container">
+                    <h2>문제 3: 다음 중 fopen() 함수의 사용 예로 옳은 것은?</h2>
+                    <p>1) fopen("data.txt", "r+");</p>
+                    <p>2) fopen("data.txt", "read");</p>
+                    <p>3) fopen("data.txt", "w+r");</p>
+                    <p>4) fopen("data.txt", "open");</p>
+                </div>
+
+                <br>
+                <textarea id="codeArea" class="dandap" placeholder="답 작성(띄어쓰기 x, 숫자만)"></textarea><br>
+                <br>
                 <button class="submit-btn" onclick="showNextProblem('4')">제출 및 다음 문제</button>
+                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
