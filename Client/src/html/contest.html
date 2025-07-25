@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년 국립공주대학교 코딩 콘테스트 클라이언트</title>
+    <link rel="stylesheet" href="../css/clientStyle.css">
+    <script src="../js/controls/titleBarControl.js" defer></script>
+    <script src="../js/client/clientButton.js" defer></script>
+    <script src="../js/problemHtmlControl/contestControl.js" defer></script>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <!--navbar-->
+        <div class="navbar">
+            <!--title-->
+            <div class="nav-title">
+
+                <div class="logo">
+                    <img src="../../assets/icons/win/png/icon.png" alt="Server Logo">
+                </div>
+
+                <div class="title">
+                    2025 CECC Client
+                </div>
+
+            </div>
+            <!--window control button(close, maximize/restore, minimize)-->
+            <div class="nav-window-controls">
+                <button id="minimizeWindowButton" class="title-bar-minimize-button " title="Minimize"
+                    alt="Minimize Button"></button>
+                <button id="resizeWindowButton" class="title-bar-maximize-button " title="Maximize"
+                    alt="Maximize/Restore Button"></button>
+                <button id="closeWindowButton" class="title-bar-close-button " title="Close"
+                    alt="Close Button"></button>
+            </div>
+
+        </div>
+
+        <div class="contentsProblem">
+            <!-- 문제 1 -->
+            <div id="1" class="problem">
+                <h2>문제 1: 이 텍스트는 문제 1입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <button class="submit-btn" onclick="showNextProblem('2')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 2 -->
+            <div id="2" class="problem">
+                <h2>문제 2: 이 텍스트는 문제 2입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <button class="submit-btn" onclick="showNextProblem('3')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="3" class="problem">
+                <h2>문제 3: 이 텍스트는 문제 3입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <textarea id="codeArea">답 작성(띄어쓰기 x, 숫자만)</textarea><br>
+                <button class="submit-btn" onclick="showNextProblem('4')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="4" class="problem">
+                <h2>문제 4: 이 텍스트는 문제 4입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('5')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="5" class="problem">
+                <h2>문제 5: 이 텍스트는 문제 5입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('6')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="6" class="problem">
+                <h2>문제 6: 이 텍스트는 문제 6입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('7')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="7" class="problem">
+                <h2>문제 7: 이 텍스트는 문제 7입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('8')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="8" class="problem">
+                <h2>문제 8: 이 텍스트는 문제 8입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('9')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="9" class="problem">
+                <h2>문제 9: 이 텍스트는 문제 9입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('10')">제출 및 다음 문제</button>
+            </div>
+
+            <!-- 문제 3 (추가할 문제) -->
+            <div id="10" class="problem">
+                <h2>문제 10: 이 텍스트는 문제 10입니다.</h2>
+                <p>문제를 풀어주세요!</p>
+                <h2>C 코드 입력</h2>
+                <textarea id="codeArea" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
+                <button id="runCode">채점 실행</button>
+                <pre id="resultArea"></pre>
+                <button class="submit-btn" onclick="showNextProblem('problem4')">제출 및 종료</button>
+            </div>
+
+        </div>
+
+        <div class="footbar">
+            <div class="footbar-contents">
+                <div class="copyright">
+                    © 2025 LeeKiJoon all rights reserved
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

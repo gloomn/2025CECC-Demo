@@ -1,0 +1,112 @@
+
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>2025년 국립공주대학교 코딩 콘테스트 서버</title>
+      <link rel="stylesheet" href="../css/serverStyle.css">
+      <script src="../js/controls/titleBarControl.js" defer></script>
+      <script src="../js/server/serverButton.js" defer></script>
+      <script src="../js/server/updateClientsInfo.js" defer></script>
+    </head>
+    <body>
+      <div class="main-container">
+        <!--navbar-->
+        <div class="navbar">
+          <div class="nav-title">
+            <div class="logo">
+              <img src="../../assets/icons/win/png/icon.png" alt="Server Logo">
+            </div>
+            <div class="title">
+              2025 CECC Server
+            </div>
+          </div>
+          <div class="nav-window-controls">
+            <button id="minimizeWindowButton" class="title-bar-minimize-button " title="Minimize" alt="Minimize Button"></button>
+            <button id="resizeWindowButton" class="title-bar-maximize-button " title="Maximize/Restore Button"></button>
+            <button id="closeWindowButton" class="title-bar-close-button " title="Close" alt="Close Button"></button>
+          </div>
+        </div>
+
+        <div class="contents">
+          <div class="server-info">
+            <div class="server-box">
+              <div class="server-status">
+                <div class="server-status-row">
+                  <span class="label">IP 주소 :</span>
+                  <span id="ipAddress" class="value">N/A</span>
+                </div>
+                <div class="server-status-row">
+                  <span class="label">Port 번호 :</span>
+                  <input id="port" class="value port-input" type="number" min="1" max="65535" value="5000" />
+                </div>
+                <div class="server-status-row">
+                  <span class="label">서버 상태 :</span>
+                  <span id="serverStatus" class="value">🔴 서버 중지됨</span>
+                </div>
+                <div class="server-status-row">
+                  <span class="label">접속자 수 :</span>
+                  <span class="value">0</span>
+                </div>
+              </div>
+
+              <div class="server-efficiency">
+                <div class="server-efficiency-row">
+                  <span class="label">업 타임 :</span>
+                  <span id="uptime" class="value">00:00:00</span>
+                </div>
+                <div class="server-efficiency-row">
+                  <span class="label">rss 메모리 :</span>
+                  <span id="rss" class="value">0 MB</span>
+                </div>
+                <div class="server-efficiency-row">
+                  <span class="label">heap 메모리 :</span>
+                  <span id="heapused" class="value">0</span>
+                </div>
+                <div class="server-efficiency-row">
+                  <span class="label">스레드 수 :</span>
+                  <span class="value">0 B/s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="client-info">
+              <table id="user-table" border="1">
+                <thead>
+                  <tr>
+                    <th>닉네임</th>
+                    <th>IP</th>
+                    <th>포트</th>
+                    <th>문제</th>
+                    <th>점수</th>
+                  </tr>
+                </thead>
+                <tbody id="client-table-body">
+                <!-- 여기에 클라이언트 목록이 동적으로 채워집니다. -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="buttons">
+              <button id="serverStartButton" class="server-start-button" role="button">서버 실행하기</button>
+              <button id="contestStartButton" class="contest-start-button" role="button">대회 시작하기</button>
+              <button id="removeClientButton" class="remove-client-button" role="button">클라이언트 초기화</button>
+              <button id="clientStandbyButton" class="client-standby-button" role="button">클라이언트 대기 화면</button>
+            </div>
+          </div>
+          
+          <div class="server-log">
+
+          </div>
+        </div>
+
+        <div class="footbar">
+          <div class="footbar-contents">
+            <div class="copyright">
+              © 2025 LeeKiJoon all rights reserved
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  

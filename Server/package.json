@@ -1,0 +1,19 @@
+{
+  "name": "2025-computer-education-coding-contest-server",
+  "version": "1.0.0",
+  "description": "2025년 국립공주대학교 컴퓨터교육과 코딩 콘테스트 서버",
+  "main": "src/electron/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "이기준",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.2.0"
+  },
+  "dependencies": {
+    "websocket": "^1.0.35",
+    "ws": "^8.18.3"
+  }
+}

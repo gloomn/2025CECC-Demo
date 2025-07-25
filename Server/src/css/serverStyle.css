@@ -1,0 +1,431 @@
+/*© 2025 LeeKiJoon all rights reserved*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+p {
+    margin: 0;
+}
+
+:root {
+    --background-color: #f4f7f9;
+    --text-color: #000000;
+}
+
+.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    height: 100vh;
+}
+
+.navbar {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    -webkit-app-region: drag;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo {
+    user-select: none;
+    ;
+}
+
+.logo>img {
+    width: 20px;
+    height: 20px;
+}
+
+.title {
+    margin-left: 3px;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: Nunito;
+    user-select: none;
+}
+
+.nav-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-window-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 5px;
+    -webkit-app-region: no-drag;
+    user-select: none;
+}
+
+.title-bar-maximize-button {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    background-image: url('../../assets/buttons/titlebar/maximizeButton.svg');
+}
+
+.title-bar-restore-button {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+    background-image: url('../../assets/buttons/titlebar/restoreButton.svg');
+}
+
+.title-bar-minimize-button {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+    background-image: url('../../assets/buttons/titlebar/minimizeButton.svg');
+}
+
+.title-bar-close-button {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background-image: url('../../assets/buttons/titlebar/closeButton.svg');
+}
+
+.title-bar-restore-button:hover,
+.title-bar-maximize-button:hover,
+.title-bar-minimize-button:hover,
+.title-bar-close-button:hover {
+    filter: brightness(80%);
+}
+
+.contents {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 0;
+}
+
+.footbar {
+    display: block;
+    background-color: var(--background-color);
+}
+
+.footbar-contents {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.copyright {
+    font-family: Nunito;
+    color: gray;
+    font-size: 15px;
+}
+
+.server-box {
+    display: flex;
+    flex-direction: row;
+    flex: 3 1 0;
+    min-height: 0;
+    gap: 20px;
+    /* 두 박스 사이 간격 */
+}
+
+.server-info {
+    display: flex;
+    flex-direction: column;
+    flex: 6 1 0;
+    min-width: 0;
+    gap: 20px;
+    height: 100%;
+    /* 추가: 내부 요소가 전체를 채우도록 */
+}
+
+
+.server-status,
+.server-efficiency {
+    background: white;
+    padding: 0px;
+    /* 기존 0px에서 30px로 통일 */
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    flex: 5 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* 박스 전체 높이 사용 */
+    font-size: clamp(15px, 1.2vw, 20px);
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #222;
+    text-align: left;
+    font-family: Nunito;
+    box-sizing: border-box;
+}
+
+.client-info {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    flex: 6.5 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    flex: 0.5 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.server-log {
+    background: white;
+    flex: 4 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+.server-status-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    /* 남은 공간을 균등 분할 */
+    margin-bottom: 0;
+    /* 필요시 간격 제거 */
+    min-height: 0;
+    margin-left: 10px;
+}
+
+.server-status-row .label {
+    min-width: 90px;
+    /* 라벨 길이에 맞게 조정 */
+    text-align: right;
+    margin-right: 8px;
+    color: #555;
+}
+
+.server-efficiency-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    /* 남은 공간을 균등 분할 */
+    margin-bottom: 0;
+    /* 필요시 간격 제거 */
+    min-height: 0;
+    margin-left: 10px;
+}
+
+.server-efficiency-row .label {
+    min-width: 130px;
+    /* 라벨 길이에 맞게 조정 */
+    text-align: right;
+    margin-right: 8px;
+    color: #555;
+}
+
+.server-status-row .value,
+.server-status-row .value {
+    flex: 1;
+    text-align: left;
+    color: #222;
+}
+
+.server-start-button {
+    background-color: #4acfae;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 10px;
+    border: 0px;
+}
+
+.contest-start-button {
+    background-color: #4e4acf;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 10px;
+    border: 0px;
+    margin-left: 20px;
+}
+
+.remove-client-button {
+    background-color: #4a93cf;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 10px;
+    border: 0px;
+    margin-left: 20px;
+}
+
+.client-standby-button {
+    background-color: #4a93cf;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 10px;
+    border: 0px;
+    margin-left: 20px;
+}
+
+
+
+.server-start-button:hover,
+.contest-start-button:hover,
+.remove-client-button:hover,
+.client-standby-button:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+.port-input {
+    width: 3ch;
+    min-width: 3ch;
+    max-width: 8ch;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: #222;
+    background: transparent;
+    border: 0px;
+    border-radius: 6px;
+    text-align: left;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.2s;
+    margin-left: 0;
+}
+
+#user-table {
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+td {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+thead {
+    font-weight: bold;
+    color: #fff;
+    background: #8e9fd6;
+}
+
+td,
+th {
+    padding: 1em .4em;
+    vertical-align: middle;
+}
+
+td {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background: #fff;
+}
+
+@media all and (max-width: 768px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    table {
+        position: relative;
+        padding-bottom: 0;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    }
+
+    thead {
+        float: left;
+        white-space: nowrap;
+    }
+
+    tbody {
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        white-space: nowrap;
+    }
+
+    tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    th {
+        border-bottom: 1px solid #a39485;
+    }
+
+    td {
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
