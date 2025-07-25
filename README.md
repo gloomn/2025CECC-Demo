@@ -1,11 +1,8 @@
 <img width="2000" height="360" alt="banner-001" src="https://github.com/user-attachments/assets/d14e87c6-f9ff-46fa-931b-d7af58ac5ea9" />
+# 2025 Computer Education Coding Contest Server & Client
 
-
-
-# GlobalKeyBoardHookLib
-
-Global Keyboard Hook Library is a library that primarily sets global keyboard hook to detect keyboard events outside of the application for window forms.
-This allows to detect and process the input at the system level, rather than at the program level.
+본 프로젝트는 2025년 컴퓨터교육과 코딩 콘테스트를 위한 서버와 클라이언트입니다.
+기술 스택은 html, css, js이고, 웹 애플리케이션 프레임워크 electron.js를 사용하였습니다.
 
 
 ## Getting started
