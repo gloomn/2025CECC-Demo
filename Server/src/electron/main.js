@@ -114,9 +114,8 @@ function createWindow() {
   });
 
   ipcMain.handle('get-stats', () => {
-    getStats()
-  }
-  );
+    return getStats()
+  });
   
   ipcMain.handle('server-log', (message) =>
   {

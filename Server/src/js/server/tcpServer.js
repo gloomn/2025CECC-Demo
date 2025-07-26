@@ -26,7 +26,7 @@ const saveLogToFile = (message) => {
 
   fs.appendFile(logFilePath, logLine, (err) => {
     if (err) {
-      console.error('로그 파일 저장 실패:', err);
+      console.error('save log file failed:', err);
     }
   });
 };
@@ -34,9 +34,9 @@ const saveLogToFile = (message) => {
 const clearLogFile = () => {
   fs.writeFile(logFilePath, '', (err) => {
     if (err) {
-      console.error('로그 파일 초기화 실패:', err);
+      console.error('log file initialize failed:', err);
     } else {
-      console.log('로그 파일이 초기화되었습니다.');
+      console.log('log file has been initialized.');
     }
   });
 };
@@ -122,6 +122,7 @@ function startServer(port) {
       }
 
       if (msg.type === 'SUBMIT_ANSWER') {
+        sendLogToRenderer("======================================")
         sendLogToRenderer(`${clientIp}로 부터 답이 수신됨`);
         sendLogToRenderer(`문제: ${msg.problem}`);
         sendLogToRenderer(`답: ${msg.answer}`);
@@ -137,6 +138,7 @@ function startServer(port) {
               clientInfo.score += scoreDelta;
               clientInfo.problem = msg.problem;
               sendLogToRenderer(`${clientInfo.nickname}의 점수가 ${clientInfo.score}로 업데이트 됨.`);
+              sendLogToRenderer("======================================")
               console.log(`Updated score for ${clientInfo.nickname}: ${clientInfo.score}`);
             }
             resolve();
@@ -147,7 +149,7 @@ function startServer(port) {
 
 
     socket.on('end', () => {
-      sendLogToRenderer(`${clientIp} has been disconnected`);
+      sendLogToRenderer(`${clientIp}의 연결이 끊어졌습니다.`);
       console.log(`${clientIp} has been disconnected`);
       clients = clients.filter((s) => s !== socket);
       clientsInfo.delete(socket);
@@ -275,10 +277,21 @@ function stopServer() {
   }
 }
 
-//서버 업타임 계산
 function getUptime() {
-  if (!serverStartTime) return 0;
-  return Math.floor((Date.now() - serverStartTime) / 1000);
+  if (!serverStartTime) return "00:00:00";  // If no start time, return "00:00:00"
+  const uptimeInSeconds = Math.floor((Date.now() - serverStartTime) / 1000);
+
+  // Convert seconds to HH:MM:SS format
+  const hours = String(Math.floor(uptimeInSeconds / 3600)).padStart(2, '0');
+  const minutes = String(Math.floor((uptimeInSeconds % 3600) / 60)).padStart(2, '0');
+  const seconds = String(uptimeInSeconds % 60).padStart(2, '0');
+
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+function getClientCount()
+{
+  return clients.length;
 }
 
 //서버 메모리 사용량
@@ -292,12 +305,19 @@ function getMemoryUsage() {
   };
 }
 
+function getCpuThreads() {
+  const cpus = os.cpus(); // 각 CPU 코어에 대한 정보를 가져옵니다.
+  return cpus.length; // CPU 코어 수를 반환합니다. 이는 스레드 수에 가까운 값입니다.
+}
+
 //서버 상태
 function getStats() {
   return {
     ip: getLocalIp(),
     uptime: getUptime(),
-    memory: getMemoryUsage()
+    memory: getMemoryUsage(),
+    thread: getCpuThreads(),
+    clientCount: getClientCount()
   };
 }
 
@@ -305,8 +325,6 @@ module.exports = {
   startServer,
   stopServer,
   getLocalIp,
-  getUptime,
-  getMemoryUsage,
   getStats,
   getClientsInfoArray,
   startContest,

@@ -47,8 +47,10 @@ async function updateStats() {
     const stats = await window.api.getStats();
 
     document.getElementById('uptime').innerText = stats.uptime;
-    document.getElementById('rss').innerText = bytesToMB(stats.memory.rss);
-    document.getElementById('heapUsed').innerText = bytesToMB(stats.memory.heapUsed);
+    document.getElementById('rss').innerText = bytesToMB(stats.memory.rss) + "MB";
+    document.getElementById('heapused').innerText = bytesToMB(stats.memory.heapUsed) + "MB";
+    document.getElementById('thread').innerText = stats.thread;
+    document.getElementById('clientCount').innerText = stats.clientCount;
   } catch (err) {
     console.error('Stats 가져오기 실패:', err);
   }

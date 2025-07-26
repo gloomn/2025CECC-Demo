@@ -45,7 +45,7 @@ const WINDOW_API = {
     },
 
     getStats: () => {
-        ipcRenderer.invoke('get-stats')
+        return ipcRenderer.invoke('get-stats')
     },
 
     getClients: () => {
