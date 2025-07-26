@@ -94,6 +94,8 @@ function startServer(port) {
   serverStartTime = Date.now();
 
   server = net.createServer((socket) => {
+    //keep alive packet 설정
+    socket.setKeepAlive(true, 10000)
     sendLogToRenderer(`클라이언트 연결됨: ${getClientIp(socket.remoteAddress)}`);
     console.log('Client Connected:', getClientIp(socket.remoteAddress));
     const clientIp = getClientIp(socket.remoteAddress);
