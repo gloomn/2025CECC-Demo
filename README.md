@@ -97,7 +97,7 @@ namespace ColorPicker
 }
 
 ```
-
+mirror code 저작권 표시
 ## Feedback
 
 Email: ithan0704@naver.com
