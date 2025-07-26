@@ -167,6 +167,15 @@ function finishContest() {
   console.log('sended contest finish message to client');
 }
 
+//대회 종료 명령을 클라이언트로 전송
+function serverDown() {
+  const message = JSON.stringify({ type: 'SERVER_DOWN' });
+  clients.forEach(socket => {
+    socket.write(message + '\n'); // 메시지 구분용으로 개행 추가
+  });
+  console.log('sended server down message to client');
+}
+
 //클라이언트 초기화
 function removeClient() {
   const message = JSON.stringify({ type: 'REMOVE_CLIENT' });
@@ -243,5 +252,6 @@ module.exports = {
   startContest,
   finishContest,
   removeClient,
-  clientStandby
+  clientStandby,
+  serverDown
 };

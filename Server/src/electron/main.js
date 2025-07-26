@@ -6,7 +6,7 @@ const {
   ipcMain
 } = require('electron/main');
 const path = require('path');
-const { startServer, stopServer, getLocalIp, getStats, getClientsInfoArray, startContest, finishContest, removeClient, clientStandby } = require('../js/server/tcpServer');
+const { startServer, stopServer, getLocalIp, getStats, getClientsInfoArray, startContest, finishContest, removeClient, clientStandby, serverDown } = require('../js/server/tcpServer');
 let window;
 
 function createWindow() {
@@ -57,6 +57,7 @@ function createWindow() {
   //Close window
   ipcMain.on('close-window', () => {
     if (window) {
+      serverDown();
       window.close();
     }
   });

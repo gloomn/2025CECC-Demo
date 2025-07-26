@@ -82,6 +82,16 @@ function connectToServer(ip, port, nickname) {
             console.error('mainWindow is no selected');
           }
         }
+
+        else if(parsed.type == 'SERVER_DOWN') {
+          console.log('SERVER_DOWN message received');
+
+          if(mainWindowRef) {
+            mainWindowRef.loadFile('src/html/serverdown.html');
+          } else {
+            console.error('mainWindow is no selected');
+          }
+        }
       });
     });
 
