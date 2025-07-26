@@ -233,18 +233,37 @@ function startContest() {
   console.log('sended contest start message to client');
 }
 
-//대회 종료 명령을 클라이언트로 전송
 function finishContest() {
   const message = JSON.stringify({ type: 'FINISH_CONTEST' });
+
+  // 클라이언트들에게 종료 메시지 전송
   clients.forEach(socket => {
-    socket.write(message + '\n'); // 메시지 구분용으로 개행 추가
+    socket.write(message + '\n');
   });
 
-  sendLogToRenderer('대회 종료 메세지를 클라이언트들에게 전송함');
-  console.log('sended contest finish message to client');
+  // 점수 기준으로 정렬
+  const sortedClients = Array.from(clientsInfo.values())
+    .sort((a, b) => b.score - a.score);
+
+  // 📊 최종 순위 출력
+  sendLogToRenderer('📊 최종 순위:');
+  sortedClients.forEach((client, index) => {
+    sendLogToRenderer(`${index + 1}등 | ${client.nickname} | ${client.score}`);
+  });
+
+  // 🏆 상위 3명 출력
+  sendLogToRenderer('🏆 1, 2, 3등:');
+  sendLogToRenderer('============');
+  for (let i = 0; i < 3 && i < sortedClients.length; i++) {
+    sendLogToRenderer(`${i + 1}등 | ${sortedClients[i].nickname} | ${sortedClients[i].score}`);
+  }
+  sendLogToRenderer('============');
 }
 
-//대회 종료 명령을 클라이언트로 전송
+
+
+
+//서버 다운 명령을 클라이언트로 전송
 function serverDown() {
   const message = JSON.stringify({ type: 'SERVER_DOWN' });
   clients.forEach(socket => {

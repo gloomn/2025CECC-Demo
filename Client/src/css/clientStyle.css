@@ -341,3 +341,15 @@ h5 {
 {
     color: red;
 }
+
+.warning-standby
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    font-family: Nunito;
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+}

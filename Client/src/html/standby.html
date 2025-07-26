@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="../js/controls/titleBarControl.js" defer></script>
     <script src="../js/client/clientButton.js" defer></script>
 </head>
+
 <body>
     <div class="main-container">
 
@@ -27,17 +29,23 @@
             </div>
             <!--window control button(close, maximize/restore, minimize)-->
             <div class="nav-window-controls">
-                <button id="minimizeWindowButton" class="title-bar-minimize-button " title="Minimize" alt="Minimize Button"></button>
-                <button id="resizeWindowButton" class="title-bar-maximize-button " title="Maximize" alt="Maximize/Restore Button"></button>
-                <button id="closeWindowButton" class="title-bar-close-button " title="Close" alt="Close Button"></button>
+                <button id="minimizeWindowButton" class="title-bar-minimize-button " title="Minimize"
+                    alt="Minimize Button"></button>
+                <button id="resizeWindowButton" class="title-bar-maximize-button " title="Maximize"
+                    alt="Maximize/Restore Button"></button>
+                <button id="closeWindowButton" class="title-bar-close-button " title="Close"
+                    alt="Close Button"></button>
             </div>
 
         </div>
 
-        <div class="contents">
-                <div class="standby-title">
-                        대회가 곧 시작됩니다!
-                    </div>
+        <div class="standby-title">
+            대회가 곧 시작됩니다!
+        </div>
+        <div class="warning-standby">
+            <p>ℹ️ 코드의 timeout은 3초로 매우 긴 시간이니 무한 루프에 빠지지 않게 잘 확인하세요 >ㅡ </p>
+            <br>
+            <p>⚠️ 문제를 다 풀었거나 대회가 종료되어도 점수 확인을 위해 프로그램을 종료하지 마세요!</p>
         </div>
 
         <div class="footbar">
@@ -49,4 +57,5 @@
         </div>
     </div>
 </body>
+
 </html>
