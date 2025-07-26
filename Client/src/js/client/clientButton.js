@@ -1,3 +1,4 @@
+//© 2025 LeeKiJoon all rights reserved
 const connectBtn = document.getElementById('login-button');
 
 connectBtn.addEventListener('click', () => {

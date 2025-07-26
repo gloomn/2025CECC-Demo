@@ -1,5 +1,6 @@
-// CodeMirror 편집기 설정
-  const editor = CodeMirror.fromTextArea(document.getElementById("codeArea4"), {
+//© 2025 LeeKiJoon all rights reserved
+function initializeCodeMirror(problemId) {
+  const editor = CodeMirror.fromTextArea(document.getElementById(`codeArea${problemId}`), {
     mode: "text/x-csrc",      // C언어 모드 설정
     theme: "darcula",         // 테마 설정
     lineNumbers: true,        // 라인 번호 표시
@@ -18,3 +19,6 @@
   setTimeout(() => {
     editor.refresh();
   }, 100);
+
+  return editor; // CodeMirror 인스턴스를 반환
+}

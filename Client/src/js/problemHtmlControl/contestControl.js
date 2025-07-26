@@ -1,14 +1,16 @@
+//© 2025 LeeKiJoon all rights reserved
 let currentProblemId = 1;
 let clientIp = null;
+let editors = {};  // 각 문제에 대한 CodeMirror 인스턴스를 저장할 객체
 
 window.onload = function () {
+    // 처음 문제 보이기
     document.getElementById("1").style.display = "block";
 
-    // IP 주소 가져오기
-    window.api.getClientIp().then(ip => {
-        clientIp = ip;
-        console.log("내 IP 주소:", ip);
-    });
+    // 4번부터 CodeMirror 인스턴스 초기화
+    for (let i = 4; i <= 10; i++) {
+        editors[i] = initializeCodeMirror(i);  // `initializeCodeMirror` 함수 호출
+    }
 };
 
 // 다음 문제로 이동하는 함수
@@ -22,7 +24,9 @@ async function showNextProblem() {
     }
 
     // 답안 초기화 (다음 문제로 넘어갈 때)
-    document.getElementById(`codeArea${currentProblemId}`).value = '';
+    if (currentProblemId >= 4) {  // 4번 문제부터 CodeMirror 초기화
+        editors[currentProblemId].setValue('');  // CodeMirror에서 값 초기화
+    }
 
     currentProblemId++;
 
@@ -32,15 +36,20 @@ async function showNextProblem() {
         nextProblem.style.display = "block";
     }
 
-    if(currentProblemId == 10)
-    {
+    if (currentProblemId == 10) {
         showFinishScreen();
     }
 }
 
 async function submitAnswer() {
-    // 문제 번호에 맞는 textarea의 ID를 동적으로 사용
-    const answer = document.getElementById(`codeArea${currentProblemId}`).value.trim();
+    let answer;
+    // 4번 문제부터 CodeMirror 사용
+    if (currentProblemId >= 4) {
+        answer = editors[currentProblemId].getValue().trim();  // CodeMirror에서 답 가져오기
+    } else {
+        // 1~3번 문제는 textarea로 처리
+        answer = document.getElementById(`codeArea${currentProblemId}`).value.trim();
+    }
 
     if (!answer) {
         alert("답안을 입력해주세요.");
@@ -55,7 +64,6 @@ async function submitAnswer() {
     });
 }
 
-async function showFinishScreen()
-{
+async function showFinishScreen() {
     window.api.changeToFinish();
 }

@@ -9,6 +9,7 @@ let serverStartTime = null;
 const clientsInfo = new Map();
 let processQueue = Promise.resolve();
 
+//로컬 아이피주소를 받아옴 ::ffff: 형식임(IPV6 & IPV4)
 function getLocalIp() {
   const interfaces = os.networkInterfaces();
   const preferredNames = ['Wi-Fi', 'WLAN', 'wlan0', 'en0', 'Ethernet'];
@@ -40,10 +41,12 @@ function getLocalIp() {
   return '127.0.0.1';
 }
 
+//IPV4로 변환
 function getClientIp(address) {
   return address.replace(/^::ffff:/, '');
 }
 
+//TCP 서버 시작 -> 파라미터는 포트
 function startServer(port) {
   serverStartTime = Date.now();
 
@@ -66,7 +69,7 @@ function startServer(port) {
 
   let msg;
   try {
-    msg = JSON.parse(raw);  // 여기서만 파싱!
+    msg = JSON.parse(raw);  // 여기서만 파싱
   } catch (err) {
     console.error('Invalid JSON from client:', raw);
     return;
@@ -123,6 +126,7 @@ server.listen(port, () => {
 });
 }
 
+//문제 채점 시스템(1~3번은 단답, 4~6번은 코딩 => judgeCCode, generateTestCases 모듈 사용(c_compile/judge.c))
 async function evaluateProblem(problemId, answer) {
   const correctAnswers = { 1: "4", 2: "3", 3: "1" };
 
@@ -134,17 +138,18 @@ async function evaluateProblem(problemId, answer) {
 
   if (problemId >= 4 && problemId <= 10) {
     const cases = generateTestCases(problemId);
-    return await judgeCCode(answer, cases); // 랜덤 테스트 케이스로 채점
+    return await judgeCCode(answer, cases); // 랜덤 테스트 케이스로 채점(generateTestCases)
   }
 
   return 0; // 유효하지 않은 문제 번호
 }
 
-
+//클라이언트 정보를 배열로 가져옴
 function getClientsInfoArray() {
   return Array.from(clientsInfo.values());
 }
 
+//대회 시작 명령을 클라이언트로 전송
 function startContest() {
   const message = JSON.stringify({ type: 'START_CONTEST' });
   clients.forEach(socket => {
@@ -153,6 +158,7 @@ function startContest() {
   console.log('sended contest start message to client');
 }
 
+//대회 종료 명령을 클라이언트로 전송
 function finishContest() {
   const message = JSON.stringify({ type: 'FINISH_CONTEST' });
   clients.forEach(socket => {
@@ -161,6 +167,7 @@ function finishContest() {
   console.log('sended contest finish message to client');
 }
 
+//클라이언트 초기화
 function removeClient() {
   const message = JSON.stringify({ type: 'REMOVE_CLIENT' });
 
@@ -176,7 +183,7 @@ function removeClient() {
   clients = [];
 }
 
-
+//모든 클라이언트의 화면을 대기 화면으로 바꿈
 function clientStandby() {
   const message = JSON.stringify({ type: 'CLIENT_STANDBY' });
   clients.forEach(socket => {
@@ -185,6 +192,7 @@ function clientStandby() {
   console.log('sended client standby message to client');
 }
 
+//TCP 서버 종료(모든 클라이언트 초기화)
 function stopServer() {
   if (server) {
     clients.forEach((socket) => socket.destroy());
@@ -198,11 +206,13 @@ function stopServer() {
   }
 }
 
+//서버 업타임 계산
 function getUptime() {
   if (!serverStartTime) return 0;
   return Math.floor((Date.now() - serverStartTime) / 1000);
 }
 
+//서버 메모리 사용량
 function getMemoryUsage() {
   const mem = process.memoryUsage();
   return {
@@ -213,6 +223,7 @@ function getMemoryUsage() {
   };
 }
 
+//서버 상태
 function getStats() {
   return {
     ip: getLocalIp(),

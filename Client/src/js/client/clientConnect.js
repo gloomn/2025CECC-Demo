@@ -1,5 +1,5 @@
+//© 2025 LeeKiJoon all rights reserved
 const net = require('net');
-const os = require('os');
 const client = new net.Socket();
 let localIP = 0;
 let mainWindowRef = null; // 외부에서 설정
