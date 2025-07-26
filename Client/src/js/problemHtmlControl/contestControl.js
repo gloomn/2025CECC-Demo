@@ -13,6 +13,7 @@ window.onload = function () {
     }
 };
 
+//제출 버튼 누를 시 다음 문제로 넘어감 + 서버로 답안 전송
 async function showNextProblem() {
     const submitted = await submitAnswer();
 
@@ -44,7 +45,7 @@ async function showNextProblem() {
     }
 }
 
-
+//서버로 답안 전송
 async function submitAnswer() {
     let answer;
 
@@ -82,7 +83,7 @@ async function submitAnswer() {
     return true;
 }
 
-
+//문제 다 풀었으면 종료 화면으로 전환
 async function showFinishScreen() {
     window.api.changeToFinish();
 }

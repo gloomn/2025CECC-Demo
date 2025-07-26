@@ -8,6 +8,7 @@ function setMainWindow(win) {
   mainWindowRef = win;
 }
 
+//서버랑 연결 삐슝
 function connectToServer(ip, port, nickname) {
   return new Promise((resolve, reject) => {
 
@@ -15,7 +16,7 @@ function connectToServer(ip, port, nickname) {
       console.log('✅ 서버 연결 성공');
       localIP = ip;
       const initData = {
-        type: 'connect',
+        type: 'CONNECT',
         ip: ip,
         nickname: nickname,
         problem: '0',
@@ -43,6 +44,7 @@ function connectToServer(ip, port, nickname) {
 
         console.log('[Received Message]', parsed);
 
+        //대회 시작 명령 받을 때
         if (parsed.type === 'START_CONTEST') {
           console.log('START_CONTEST message received');
 
@@ -53,6 +55,8 @@ function connectToServer(ip, port, nickname) {
           }
         }
 
+
+        //대회 종료 명령 받을 때
         else if(parsed.type == 'FINISH_CONTEST') {
           console.log('FINISH_CONTEST message received');
 
@@ -63,6 +67,8 @@ function connectToServer(ip, port, nickname) {
           }
         }
 
+
+        //클라이언트 초기화 명령 받을 때
         else if(parsed.type == 'REMOVE_CLIENT') {
           console.log('REMOVE_CLIENT message received');
 
@@ -73,6 +79,8 @@ function connectToServer(ip, port, nickname) {
           }
         }
 
+
+        //클라이언트 대기 상태 명령 받을 때
         else if(parsed.type == 'CLIENT_STANDBY') {
           console.log('CLIENT_STANDBY message received');
 
@@ -83,6 +91,8 @@ function connectToServer(ip, port, nickname) {
           }
         }
 
+
+        //서버 다운 명령 받을 때
         else if(parsed.type == 'SERVER_DOWN') {
           console.log('SERVER_DOWN message received');
 
@@ -106,6 +116,9 @@ function connectToServer(ip, port, nickname) {
   });
 }
 
+//답안 제출 시 문제 번호 + 답안 같이 전송
+//전송자 구분 가능하게 ip랑 같이 싸서 삐슝 보냄
+//식별 명령어는 SUBMIT_ANSWER
 function submitAnswer(problem, answer)
 {
   const message = JSON.stringify({

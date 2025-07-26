@@ -5,13 +5,23 @@ const path = require('path');
 const fs = require('fs');
 const { generateTestCases, judgeCCode } = require('../c_compile/judge.js');
 const logFilePath = path.join(__dirname, 'logs', 'server-log.txt');
+/* 이게 바로 clients와 clientsInfo의 차이
+clients = [ socket1, socket2, socket3 ]
 
-let server = null;
-let clients = [];
-let serverStartTime = null;
-const clientsInfo = new Map();
-let processQueue = Promise.resolve();
-let mainWindowRef = null; // 외부에서 설정
+clientsInfo =
+Map {
+  socket1 => { nickname: "A", score: 5 },
+  socket2 => { nickname: "B", score: 7 },
+  socket3 => { nickname: "C", score: 10 }
+}
+*/
+
+let server = null; //TCP 서버 객체
+let clients = []; //socket을 담는 배열
+let serverStartTime = null; //서버 업타임
+const clientsInfo = new Map(); //socket을 키로 한 Map 객체
+let processQueue = Promise.resolve(); //비동키 작업 큐 체인
+let mainWindowRef = null; // 외부에서 설정(main.js의 window를 받아옴)
 
 // 로그 저장 함수
 const saveLogToFile = (message) => {
@@ -31,6 +41,7 @@ const saveLogToFile = (message) => {
   });
 };
 
+//프로그램 종료 시 로그 파일 삭제
 const clearLogFile = () => {
   fs.writeFile(logFilePath, '', (err) => {
     if (err) {
@@ -86,7 +97,7 @@ function startServer(port) {
     sendLogToRenderer(`클라이언트 연결됨: ${getClientIp(socket.remoteAddress)}`);
     console.log('Client Connected:', getClientIp(socket.remoteAddress));
     const clientIp = getClientIp(socket.remoteAddress);
-
+    
     // 같은 IP가 이미 존재하는지 확인
     if (Array.from(clientsInfo.values()).some(client => client.ip === clientIp)) {
       sendLogToRenderer(`${clientIp}는 이미 존재하는 클라이언트임.`);
@@ -94,33 +105,34 @@ function startServer(port) {
       socket.destroy(); // 이미 존재하는 클라이언트는 연결 종료
       return;
     }
-
     clients.push(socket);
 
+    //서버가 데이터를 수신 받을 때
     socket.on('data', (data) => {
-      const raw = data.toString();
-      console.log(`${clientIp}:`, raw);
+      const raw = data.toString(); //수신 받은 JSON raw 데이터
+      console.log(`${clientIp}:`, raw); //디버깅용
 
       let msg;
       try {
-        msg = JSON.parse(raw);  // 여기서만 파싱
+        msg = JSON.parse(raw);  // raw 데이터를 JSON 파싱 (여기서만 1번 실행)
       } catch (err) {
         console.error('Invalid JSON from client:', raw);
         return;
       }
 
-      // 공통 처리
-      if (msg.type === 'connect') {
+      // 클라이언트로부터 연결됨 (식별 명령어는 CONNECT)
+      if (msg.type === 'CONNECT') {
         clientsInfo.set(socket, {
-          ip: clientIp,
-          port: socket.remotePort,
-          nickname: msg.nickname || 'Unknown',
-          problem: msg.problem || '0',
-          score: msg.score || 0
+          ip: clientIp, //클라이언트의 IP 주소
+          port: socket.remotePort, //클라이언트의 연결 포트
+          nickname: msg.nickname || 'Unknown', //클라이언트의 닉네임, 식별 불가능이면 자동으로 Unknown 처리
+          problem: msg.problem || '0', //클라이언트가 완료한 문제 번호(초기는 0)
+          score: msg.score || 0 //클라이언트의 현재 점수(초기는 0)
         });
         return;
       }
 
+      //클라이언트로부터 답을 받을 때
       if (msg.type === 'SUBMIT_ANSWER') {
         sendLogToRenderer(`${clientIp}로 부터 답이 수신됨`);
         sendLogToRenderer(`문제: ${msg.problem}`);
@@ -129,13 +141,17 @@ function startServer(port) {
         console.log(`Problem: ${msg.problem}`);
         console.log(`Answer: ${msg.answer}`);
 
+        //클라이언트의 문제 채점을 비동기로 Queue를 사용하여 순차적으로 처리
+        //ProcessQueue는 비동기 작업을 순차적으로 처리하기 위한 체인
+        //processQueue = processQueue.then(...)은 기존 작업이 끝난 후 다음 작업을 이어서 실행하게 함.
+        //내부에서 새 Promise를 만들어서 비동기 작업을 수행한 후 resolve() 함.
         processQueue = processQueue.then(() => {
           return new Promise(async (resolve) => {
-            const clientInfo = clientsInfo.get(socket);
+            const clientInfo = clientsInfo.get(socket); //Map 객체인 clientsInfo에서 메세지를 받은 소켓의 정보를 가져옴.
             if (clientInfo) {
               const scoreDelta = await evaluateProblem(msg.problem, msg.answer);
-              clientInfo.score += scoreDelta;
-              clientInfo.problem = msg.problem;
+              clientInfo.score += scoreDelta; //점수 업데이트
+              clientInfo.problem = msg.problem; //문제 번호 업데이트
               sendLogToRenderer(`${clientInfo.nickname}의 점수가 ${clientInfo.score}로 업데이트 됨.`);
               console.log(`Updated score for ${clientInfo.nickname}: ${clientInfo.score}`);
             }
@@ -145,7 +161,7 @@ function startServer(port) {
       }
     });
 
-
+    //소켓이 연결을 끊을 때
     socket.on('end', () => {
       sendLogToRenderer(`${clientIp}의 연결이 끊어졌습니다.`);
       console.log(`${clientIp} has been disconnected`);
@@ -153,6 +169,7 @@ function startServer(port) {
       clientsInfo.delete(socket);
     });
 
+    //소켓 에러
     socket.on('error', (err) => {
       console.error('socket error:', err);
       clients = clients.filter((s) => s !== socket);
@@ -160,19 +177,22 @@ function startServer(port) {
     });
   });
 
+  //TCP 포트 실행
   server.listen(port, () => {
     sendLogToRenderer(`TCP 서버가 포트번호 ${port}에서 시작됐습니다.`);
     console.log(`TCP Server started on port ${port}`);
   });
 }
 
+//main.js에서 setMainWindow 함수를 사용해서 mainWindowRef에 window 객체 담음
 function setMainWindow(win) {
   mainWindowRef = win;
 }
+
 // TCP 서버에서 발생하는 로그를 Renderer로 전송
 const sendLogToRenderer = (message) => {
   const now = new Date();
-  const timestamp = now.toLocaleTimeString('ko-KR', { hour12: false }); // 예: "12:34:56"
+  const timestamp = now.toLocaleTimeString('ko-KR', { hour12: false }); // 예: "12:34:56"(타임 스탬프)
   const formattedMessage = `[${timestamp}] ${message}`;
   mainWindowRef.webContents.send('server-log', formattedMessage); // Renderer로 로그 전송
 
@@ -279,11 +299,12 @@ function stopServer() {
   }
 }
 
+//서버 업타임 계산 함수
 function getUptime() {
-  if (!serverStartTime) return "00:00:00";  // If no start time, return "00:00:00"
+  if (!serverStartTime) return "00:00:00";  // 시작 시간이 없으면 00:00:00 변환
   const uptimeInSeconds = Math.floor((Date.now() - serverStartTime) / 1000);
 
-  // Convert seconds to HH:MM:SS format
+  // 업타임 형식 초를 00:00:00 형식으로 변환
   const hours = String(Math.floor(uptimeInSeconds / 3600)).padStart(2, '0');
   const minutes = String(Math.floor((uptimeInSeconds % 3600) / 60)).padStart(2, '0');
   const seconds = String(uptimeInSeconds % 60).padStart(2, '0');
@@ -291,12 +312,13 @@ function getUptime() {
   return `${hours}:${minutes}:${seconds}`;
 }
 
+//서버에 접속한 클라이언트 카운터!
 function getClientCount()
 {
   return clients.length;
 }
 
-//서버 메모리 사용량
+//서버 메모리 사용량 계산 함수
 function getMemoryUsage() {
   const mem = process.memoryUsage();
   return {
@@ -307,12 +329,13 @@ function getMemoryUsage() {
   };
 }
 
+//CPU 스레드 수 계산 함수
 function getCpuThreads() {
-  const cpus = os.cpus(); // 각 CPU 코어에 대한 정보를 가져옵니다.
-  return cpus.length; // CPU 코어 수를 반환합니다. 이는 스레드 수에 가까운 값입니다.
+  const cpus = os.cpus(); // 각 CPU 코어에 대한 정보를 가져온다.
+  return cpus.length; // CPU 코어 수를 반환합니다. 스레드 수랑 가까운 수임 ㅋㅋ
 }
 
-//서버 상태
+//서버 상태를 getStats로 한 번에 모음
 function getStats() {
   return {
     ip: getLocalIp(),
@@ -323,6 +346,7 @@ function getStats() {
   };
 }
 
+//함수 보내버리기 뿌슝
 module.exports = {
   startServer,
   stopServer,

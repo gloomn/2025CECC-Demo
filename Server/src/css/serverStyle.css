@@ -213,6 +213,7 @@ p {
     min-height: 0;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .buttons {
@@ -250,6 +251,7 @@ p {
     /* 필요시 간격 제거 */
     min-height: 0;
     margin-left: 10px;
+    overflow: auto;
 }
 
 .server-status-row .label {
@@ -382,6 +384,10 @@ th {
 td {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     background: #fff;
+}
+tbody
+{
+    overflow: auto;
 }
 
 @media all and (max-width: 768px) {

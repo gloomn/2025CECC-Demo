@@ -1,4 +1,5 @@
 //© 2025 LeeKiJoon all rights reserved
+//코드미러 이뿌게 설정하기><
 function initializeCodeMirror(problemId) {
   const editor = CodeMirror.fromTextArea(document.getElementById(`codeArea${problemId}`), {
     mode: "text/x-csrc",      // C언어 모드 설정

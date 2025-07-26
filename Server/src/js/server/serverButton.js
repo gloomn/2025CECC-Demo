@@ -55,7 +55,7 @@ async function updateStats() {
     console.error('Stats 가져오기 실패:', err);
   }
 
-  setTimeout(updateStats, 1000); // 재귀적으로 1초마다 갱신
+  setTimeout(updateStats, 1000); // 재귀적으로 1초마다 갱신 갱갱갱
 }
 
 startContestButton.addEventListener('click', async () => {
@@ -78,10 +78,12 @@ startContestButton.addEventListener('click', async () => {
   }
 });
 
+//클라이언트 초기화 버튼 누를 시
 removeClientButton.addEventListener('click', async () => {
   window.api.removeClient();
 });
 
+//클라이언트 대기 상태로 바꾸기 버튼 누를 시
 clientStandbyButton.addEventListener('click', async () => {
   window.api.clientStandby();
 });

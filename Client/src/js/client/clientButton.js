@@ -21,10 +21,6 @@ connectBtn.addEventListener('click', () => {
   // 포트 검증: 유효한 포트 범위인지 확인
   if (isNaN(port) || port < 1 || port > 65535) {
     document.getElementById('login-alert').textContent = "❌ IP, 포트번호 및 닉네임을 입력해주세요.";
-    // 포트 입력 필드를 다시 활성화
-    document.getElementById('ipaddress').disabled = false;
-    document.getElementById('portnumber').disabled = false;
-    document.getElementById('nickname').disabled = false;
     return; // 잘못된 포트일 경우 연결 시도하지 않음
   }
 

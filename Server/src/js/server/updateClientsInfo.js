@@ -1,4 +1,5 @@
 //© 2025 LeeKiJoon all rights reserved
+//클라이언트 정보를 1초마다 갱신함 갱갱갱
 setInterval(() => {
     window.api.getClients().then(data => {
         const tbody = document.querySelector('tbody');
