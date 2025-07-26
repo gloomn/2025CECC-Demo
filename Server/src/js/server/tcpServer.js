@@ -122,7 +122,6 @@ function startServer(port) {
       }
 
       if (msg.type === 'SUBMIT_ANSWER') {
-        sendLogToRenderer("======================================")
         sendLogToRenderer(`${clientIp}로 부터 답이 수신됨`);
         sendLogToRenderer(`문제: ${msg.problem}`);
         sendLogToRenderer(`답: ${msg.answer}`);
@@ -138,7 +137,6 @@ function startServer(port) {
               clientInfo.score += scoreDelta;
               clientInfo.problem = msg.problem;
               sendLogToRenderer(`${clientInfo.nickname}의 점수가 ${clientInfo.score}로 업데이트 됨.`);
-              sendLogToRenderer("======================================")
               console.log(`Updated score for ${clientInfo.nickname}: ${clientInfo.score}`);
             }
             resolve();
@@ -265,6 +263,10 @@ function clientStandby() {
 
 //TCP 서버 종료(모든 클라이언트 초기화)
 function stopServer() {
+  const message = JSON.stringify({ type: 'SERVER_DOWN' });
+  clients.forEach(socket => {
+    socket.write(message + '\n'); // 메시지 구분용으로 개행 추가
+  });
   if (server) {
     clients.forEach((socket) => socket.destroy());
     clients = [];
