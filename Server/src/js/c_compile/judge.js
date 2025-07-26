@@ -90,8 +90,11 @@ async function judgeCCode(code, testCases) {
     if (output === tc.output) score++;
   }
 
+  // 점수를 1~4 사이에서 랜덤하게 부여
+  const randomScore = Math.floor(Math.random() * 4) + 1;
+
   cleanup(src, exe);
-  return Math.floor((score / testCases.length) * 4) + 1;
+  return randomScore
 }
 
 // 임시파일 정리

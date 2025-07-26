@@ -242,8 +242,7 @@ input {
     display: none;
 }
 
-.problem-container
-{
+.problem-container {
     text-align: left;
 }
 
@@ -270,16 +269,36 @@ input {
 }
 
 .ccode {
-    width: 100%;
-    height: auto;
-    font-size: 18px;
-    background-color: #8b8b8b1c;
-    resize: none;
-    color: black;
-    border: none;
-    border-bottom: 2px solid #0000007e;
-    outline: none;
+  width: 100%;
+  height: 400px;
+  font-family: "Consolas", Courier, monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #2e2e2e;
+  color: #f8f8f2;
+  resize: none;
+  white-space: nowrap;
+  overflow: hidden;  /* overflow-auto는 CodeMirror 내부에서 처리 */
+  padding: 0;  /* padding 제거 */
 }
+
+/* 추가적으로 기본 구문 강조 스타일 */
+.keyword {
+    color: #ff79c6;
+    font-weight: bold;
+}
+
+.string {
+    color: #f1fa8c;
+}
+
+.comment {
+    color: #6272a4;
+    font-style: italic;
+}
+
 
 .submit-btn {
     background-color: #5d85ce;
@@ -296,8 +315,18 @@ input {
 }
 
 
-h5
-{
+h5 {
     margin: 0px;
     padding: 0px;
+}
+
+.CodeMirror {
+    width: 600px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+.CodeMirror-lines {
+  padding-left: 4px;
 }

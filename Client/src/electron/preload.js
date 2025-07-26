@@ -38,6 +38,11 @@ const WINDOW_API = {
 
     sendAnswer: (data) => {
         ipcRenderer.send('submit-answer', data);
+    },
+
+    changeToFinish: () =>
+    {
+        ipcRenderer.invoke('change-to-finish');
     }
 }
 contextBridge.exposeInMainWorld('api', WINDOW_API);

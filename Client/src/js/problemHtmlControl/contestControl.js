@@ -31,6 +31,11 @@ async function showNextProblem() {
     if (nextProblem) {
         nextProblem.style.display = "block";
     }
+
+    if(currentProblemId == 10)
+    {
+        showFinishScreen();
+    }
 }
 
 async function submitAnswer() {
@@ -48,4 +53,9 @@ async function submitAnswer() {
         problem: currentProblemId,
         answer: answer
     });
+}
+
+async function showFinishScreen()
+{
+    window.api.changeToFinish();
 }

@@ -71,6 +71,10 @@ function createWindow() {
     window.loadFile('src/html/standby.html');
   });
 
+  ipcMain.handle('change-to-finish', (event) => {
+    window.loadFile('src/html/contestFinished.html');
+  });
+
   ipcMain.on('submit-answer', (event, data) => {
     submitAnswer(data.problem, data.answer);
   });

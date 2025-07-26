@@ -5,10 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025년 국립공주대학교 코딩 콘테스트 클라이언트</title>
+    <!-- CodeMirror core -->
+    <link rel="stylesheet" href="../codemirror-5.65.19/lib/codemirror.css">
+    <script src="../codemirror-5.65.19//lib/codemirror.js"></script>
+
+    <!-- 언어 모드 -->
+    <script src="../codemirror-5.65.19/mode/clike/clike.js"></script> <!-- C, Java 등 -->
+
+    <!-- 테마 -->
+    <link rel="stylesheet" href="../codemirror-5.65.19/theme/darcula.css">
+
+    <!-- 애드온: 괄호 자동완성 -->
+    <script src="../codemirror-5.65.19/addon/edit/matchbrackets.js"></script>
+    <script src="../codemirror-5.65.19/addon/edit/closebrackets.js"></script>
+
+
     <link rel="stylesheet" href="../css/clientStyle.css">
     <script src="../js/controls/titleBarControl.js" defer></script>
     <script src="../js/client/clientButton.js" defer></script>
     <script src="../js/problemHtmlControl/contestControl.js" defer></script>
+    <script src="../js/codeEditor/codeMirror.js" defer></script>
 </head>
 
 <body>
@@ -100,8 +116,7 @@
                 <h2>문제 4: 이 텍스트는 문제 4입니다.</h2>
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
-                <textarea id="codeArea4" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
+                <textarea id="codeArea4" class="ccode" rows="15" cols="80" placeholder="//여기에 코드 작성"></textarea><br>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('5')">제출 및 다음 문제</button>
             </div>
@@ -112,7 +127,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea5" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('6')">제출 및 다음 문제</button>
             </div>
@@ -123,7 +137,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea6" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('7')">제출 및 다음 문제</button>
             </div>
@@ -134,7 +147,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea7" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('8')">제출 및 다음 문제</button>
             </div>
@@ -145,7 +157,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea8" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('9')">제출 및 다음 문제</button>
             </div>
@@ -156,7 +167,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea9" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('10')">제출 및 다음 문제</button>
             </div>
@@ -167,7 +177,6 @@
                 <p>문제를 풀어주세요!</p>
                 <h2>C 코드 입력</h2>
                 <textarea id="codeArea10" rows="15" cols="80">// 여기에 solution 함수 작성</textarea><br>
-                <button id="runCode">채점 실행</button>
                 <pre id="resultArea"></pre>
                 <button class="submit-btn" onclick="showNextProblem('problem4')">제출 및 종료</button>
             </div>
