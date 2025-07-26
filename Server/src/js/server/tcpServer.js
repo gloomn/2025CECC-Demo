@@ -1,6 +1,7 @@
 //© 2025 LeeKiJoon all rights reserved
 const net = require('net');
 const os = require('os');
+const { generateTestCases, judgeCCode } = require('../c_compile/judge.js');
 
 let server = null;
 let clients = [];
@@ -60,49 +61,49 @@ function startServer(port) {
     clients.push(socket);
 
     socket.on('data', (data) => {
-      const raw = data.toString();
-      console.log(`${clientIp}:`, raw);
+  const raw = data.toString();
+  console.log(`${clientIp}:`, raw);
 
-      try {
-        const msg = JSON.parse(raw);
-        if (msg.type === 'connect') {
-          // 클라이언트 정보 저장
-          clientsInfo.set(socket, {
-            ip: clientIp,
-            port: socket.remotePort,
-            nickname: msg.nickname || 'Unknown',
-            problem: msg.problem || '0',
-            score: msg.score || 0
-          });
+  let msg;
+  try {
+    msg = JSON.parse(raw);  // 여기서만 파싱!
+  } catch (err) {
+    console.error('Invalid JSON from client:', raw);
+    return;
+  }
+
+  // 공통 처리
+  if (msg.type === 'connect') {
+    clientsInfo.set(socket, {
+      ip: clientIp,
+      port: socket.remotePort,
+      nickname: msg.nickname || 'Unknown',
+      problem: msg.problem || '0',
+      score: msg.score || 0
+    });
+    return;
+  }
+
+  if (msg.type === 'SUBMIT_ANSWER') {
+    console.log(`Received answer from ${clientIp}`);
+    console.log(`Problem: ${msg.problem}`);
+    console.log(`Answer: ${msg.answer}`);
+
+    processQueue = processQueue.then(() => {
+      return new Promise(async(resolve) => {
+        const clientInfo = clientsInfo.get(socket);
+        if (clientInfo) {
+          const scoreDelta = await evaluateProblem(msg.problem, msg.answer);
+          clientInfo.score += scoreDelta;
+          clientInfo.problem = msg.problem;
+          console.log(`Updated score for ${clientInfo.nickname}: ${clientInfo.score}`);
         }
-      } catch (err) {
-        console.error('Message format unknown:', raw);
-      }
+        resolve();
+      });
+    });
+  }
+});
 
-      const msg = JSON.parse(data.toString());
-
-      if (msg.type === 'SUBMIT_ANSWER') {
-          console.log(`Received answer from ${msg.ip}`);
-          console.log(`Problem: ${msg.problem}`);
-          console.log(`Answer: ${msg.answer}`);
-
-          // 비동기 큐에 추가하여 순차적으로 처리
-          processQueue = processQueue.then(() => {
-            return new Promise((resolve, reject) => {
-
-              // 클라이언트 정보 업데이트: problem 번호와 score 갱신
-              const clientInfo = clientsInfo.get(socket);
-              if (clientInfo) {
-                clientInfo.score += evaluateProblem(msg.problem, msg.answer);  // 기존 점수에 추가
-                clientInfo.problem = msg.problem;  // 문제 번호 갱신
-                console.log(`Updated score for ${clientInfo.nickname}: ${clientInfo.score}`);
-              }
-
-              resolve();
-            });
-          });
-        }
-  });
 
   socket.on('end', () => {
     console.log(`${clientIp} has been disconnected`);
@@ -122,128 +123,23 @@ server.listen(port, () => {
 });
 }
 
-function evaluateProblem(problemId, answer)
-{
-  if(problemId == 1)
-  {
-    if(answer == "4")
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
+async function evaluateProblem(problemId, answer) {
+  const correctAnswers = { 1: "4", 2: "3", 3: "1" };
+
+  if (problemId >= 1 && problemId <= 3) {
+    return answer === correctAnswers[problemId]
+      ? Math.floor(Math.random() * 4) + 1
+      : 0;
   }
 
-  if(problemId == 2)
-  {
-    if(answer == '3')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
+  if (problemId >= 4 && problemId <= 10) {
+    const cases = generateTestCases(problemId);
+    return await judgeCCode(answer, cases); // 랜덤 테스트 케이스로 채점
   }
 
-  if(problemId == 3)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 4)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 5)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 6)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 7)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 8)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 9)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-  if(problemId == 10)
-  {
-    if(answer == '1')
-    {
-      return Math.floor(Math.random() * 4) + 1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
+  return 0; // 유효하지 않은 문제 번호
 }
+
 
 function getClientsInfoArray() {
   return Array.from(clientsInfo.values());

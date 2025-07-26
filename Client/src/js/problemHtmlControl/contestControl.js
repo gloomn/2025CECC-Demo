@@ -12,14 +12,17 @@ window.onload = function () {
 };
 
 // 다음 문제로 이동하는 함수
-function showNextProblem() {
-    submitAnswer();
+async function showNextProblem() {
+    await submitAnswer();  // submitAnswer가 완료될 때까지 대기
 
     // 현재 문제 숨기기
     let currentProblem = document.getElementById(String(currentProblemId));
     if (currentProblem) {
         currentProblem.style.display = "none";
     }
+
+    // 답안 초기화 (다음 문제로 넘어갈 때)
+    document.getElementById(`codeArea${currentProblemId}`).value = '';
 
     currentProblemId++;
 
@@ -30,11 +33,19 @@ function showNextProblem() {
     }
 }
 
-function submitAnswer() {
-    const answer = document.getElementById('codeArea').value;
+async function submitAnswer() {
+    // 문제 번호에 맞는 textarea의 ID를 동적으로 사용
+    const answer = document.getElementById(`codeArea${currentProblemId}`).value.trim();
 
-    window.api.sendAnswer({
+    if (!answer) {
+        alert("답안을 입력해주세요.");
+        return;  // 빈 값일 경우 전송하지 않음
+    }
+
+    console.log('Sending answer:', answer);
+
+    await window.api.sendAnswer({
         problem: currentProblemId,
-        answer: answer.trim()
+        answer: answer
     });
 }
