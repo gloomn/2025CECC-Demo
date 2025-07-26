@@ -59,24 +59,24 @@ const WINDOW_API = {
             });
     },
 
-    startContest: () =>
-    {
+    startContest: () => {
         ipcRenderer.invoke('start-contest');
     },
 
-    finishContest: () =>
-    {
+    finishContest: () => {
         ipcRenderer.invoke('finish-contest');
     },
 
-    removeClient: () =>
-    {
+    removeClient: () => {
         ipcRenderer.invoke('remove-client');
     },
 
-    clientStandby: () =>
-    {
+    clientStandby: () => {
         ipcRenderer.invoke('client-standby');
+    },
+
+    receiveLog: (callback) => {
+        ipcRenderer.on('server-log', callback)
     }
 
 }

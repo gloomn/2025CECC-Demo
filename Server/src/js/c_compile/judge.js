@@ -53,16 +53,17 @@ function generateTestCases(problemId) {
 
 // 코드 채점
 async function judgeCCode(code, testCases) {
-  const id = uuidv4();
-  const base = path.join(__dirname, 'temp', id);
-  const src = `${base}.c`;
-  const exe = `${base}.exe`;
+  const id = `${Date.now()}_${uuidv4()}`;
+  const dir = path.join(__dirname, 'temp', id);
+  const src = path.join(dir, 'main.c');
+  const exe = path.join(dir, 'main.exe');
   const gcc = process.env.GCC_PATH || path.join(__dirname, '../../../portable-gcc/bin/gcc.exe');
+
   if (!fs.existsSync(gcc)) {
-    throw new Error(`gcc executable not found at path: ${gcc}. Set GCC_PATH environment variable if needed.`);
+    throw new Error(`gcc executable not found at path: ${gcc}`);
   }
-  
-  fs.mkdirSync(path.dirname(src), { recursive: true });
+
+  fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(src, code, 'utf8');
 
   const compileResult = await new Promise((resolve) => {
@@ -73,7 +74,7 @@ async function judgeCCode(code, testCases) {
   });
 
   if (!compileResult.ok) {
-    cleanup(src, exe);
+    cleanupDir(dir);
     return 0;
   }
 
@@ -91,20 +92,14 @@ async function judgeCCode(code, testCases) {
     if (output === tc.output) score++;
   }
 
-  // 점수를 1~4 사이에서 랜덤하게 부여
-  const randomScore = Math.floor(Math.random() * 4) + 1;
-
-  cleanup(src, exe);
-  return randomScore
+  cleanupDir(dir);
+  return Math.floor(Math.random() * 4) + 1;
 }
 
-// 임시파일 정리
-function cleanup(...files) {
-  for (const file of files) {
-    try {
-      fs.unlinkSync(file);
-    } catch {}
-  }
+// 디렉토리 전체 삭제
+function cleanupDir(dir) {
+  fs.rmSync(dir, { recursive: true, force: true });
 }
+
 
 module.exports = { generateTestCases, judgeCCode };

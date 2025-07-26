@@ -6,7 +6,21 @@ const {
   ipcMain
 } = require('electron/main');
 const path = require('path');
-const { startServer, stopServer, getLocalIp, getStats, getClientsInfoArray, startContest, finishContest, removeClient, clientStandby, serverDown } = require('../js/server/tcpServer');
+const { 
+  startServer, 
+  stopServer, 
+  getLocalIp, 
+  getStats, 
+  getClientsInfoArray, 
+  setMainWindow, 
+  startContest, 
+  finishContest, 
+  removeClient, 
+  clientStandby, 
+  serverDown, 
+  sendLogToRenderer,
+  clearLogFile
+} = require('../js/server/tcpServer');
 let window;
 
 function createWindow() {
@@ -59,8 +73,11 @@ function createWindow() {
     if (window) {
       serverDown();
       window.close();
+      clearLogFile();
     }
   });
+
+  setMainWindow(window);
 
   ipcMain.handle('start-server', (event, port) => {
     startServer(port);  // 서버 시작
@@ -100,6 +117,11 @@ function createWindow() {
     getStats()
   }
   );
+  
+  ipcMain.handle('server-log', (message) =>
+  {
+    sendLogToRenderer(message);
+  })
 
   window.loadFile('src/html/serverIndex.html')
 }

@@ -330,3 +330,13 @@ h5 {
 .CodeMirror-lines {
   padding-left: 4px;
 }
+
+.alertBox
+{
+    color: red;
+}
+
+.login-alert
+{
+    color: red;
+}

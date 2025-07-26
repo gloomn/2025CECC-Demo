@@ -228,6 +228,7 @@ p {
 }
 
 .server-log {
+    padding: 10px;
     background: white;
     flex: 4 1 0;
     min-width: 0;
@@ -235,6 +236,7 @@ p {
     flex-direction: column;
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: auto;
 }
 
 
