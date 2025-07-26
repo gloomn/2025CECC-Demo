@@ -13,7 +13,7 @@ function connectToServer(ip, port, nickname) {
   return new Promise((resolve, reject) => {
 
     client.connect({ host: ip, port: port }, () => {
-      console.log('✅ 서버 연결 성공');
+      console.log('server connected successfully');
       localIP = ip;
       const initData = {
         type: 'CONNECT',
