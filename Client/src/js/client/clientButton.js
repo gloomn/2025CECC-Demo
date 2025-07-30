@@ -39,6 +39,6 @@ connectBtn.addEventListener('click', () => {
     }
   }).catch((err) => {
     console.error('Failed to connect to server:', err);
-    document.getElementById('login-alert').textContent = "❌ 서버에 연결하는 동안 문제가 발생했습니다.";
+    document.getElementById('login-alert').textContent = "❌ 서버에 연결하는 동안 문제가 발생했습니다.(서버 재연결 중...)";
   });
 });

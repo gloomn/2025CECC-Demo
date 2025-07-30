@@ -99,14 +99,14 @@ function startServer(port) {
     sendLogToRenderer(`클라이언트 연결됨: ${getClientIp(socket.remoteAddress)}`);
     console.log('Client Connected:', getClientIp(socket.remoteAddress));
     const clientIp = getClientIp(socket.remoteAddress);
-    
+    /*
     // 같은 IP가 이미 존재하는지 확인
     if (Array.from(clientsInfo.values()).some(client => client.ip === clientIp)) {
       sendLogToRenderer(`${clientIp}는 이미 존재하는 클라이언트임.`);
       console.log(`${clientIp} already existing client.`);
       socket.destroy(); // 이미 존재하는 클라이언트는 연결 종료
       return;
-    }
+    }*/
     clients.push(socket);
 
     //서버가 데이터를 수신 받을 때
