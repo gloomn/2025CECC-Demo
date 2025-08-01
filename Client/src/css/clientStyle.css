@@ -148,20 +148,28 @@ p {
 }
 
 .footbar {
-    display: block;
-    background-color: var(--background-color);
-}
-
-.footbar-contents {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
     display: flex;
-    flex-direction: row;
-    padding: 5px;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 .copyright {
     font-family: Nunito;
     color: gray;
     font-size: 15px;
+    margin: 0;
+}
+
+
+.footbar-contents {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
 }
 
 .login-form {
@@ -246,13 +254,40 @@ input {
     text-align: left;
 }
 
+.problem_wrap
+{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    height: 100%;
+}
+
 .contentsProblem {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     flex-direction: column;
+}
+
+h3 
+{
+    margin: 0px;
+}
+
+.problem_intro
+{
+    overflow: auto;
+    padding: 20px;
+    font-family: Nunito;
+}
+
+.probem_c_editor
+{
+    overflow: auto;
+    padding: 5px;
+    font-family: Nunito;
 }
 
 .dandap {
@@ -322,10 +357,24 @@ h5 {
 
 .CodeMirror {
     width: 600px;
+    height: 450px;
     font-family: Consolas, monospace;
     font-size: 14px;
     padding-left: 0;
     border-radius: 8px;
+}
+
+/* 화면이 넓어지면 높이를 더 크게 */
+@media (min-height: 800px) {
+    .CodeMirror {
+        height: 550px;
+    }
+}
+
+@media (min-height: 1200px) {
+    .CodeMirror {
+        height: 700px;
+    }
 }
 
 .CodeMirror-lines {
@@ -352,4 +401,10 @@ h5 {
     font-size: 20px;
     font-weight: bold;
     align-items: center;
+}
+
+.testbox
+{
+    display: flex;
+    flex: row;
 }

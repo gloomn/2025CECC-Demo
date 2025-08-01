@@ -23,12 +23,19 @@ function generateTestCases(problemId) {
   switch (problemId) {
     case 4: return [{ input: "", output: "Hello" }];
     case 5: return Array.from({ length: 5 }, () => {
-      const a = randInt(1, 100), b = randInt(1, 100);
-      return { input: `${a} ${b}\n`, output: `${a + b}` };
+      const input = randInt(1, 10);
+      const output = Array.from({ length: input }, (_, i) => '*'.repeat(i + 1)).join('\n') + '\n';
+      return { input: `${input}\n`, output };
     });
+
     case 6: return Array.from({ length: 5 }, () => {
-      const n = randInt(0, 10);
-      return { input: `${n}\n`, output: `${factorial(n)}` };
+      const n = randInt(2, 10);  // 최소 2개, 최대 10개 숫자
+      const arr = Array.from({ length: n }, () => randInt(-100, 100));
+      const min = Math.min(...arr);
+      const max = Math.max(...arr);
+      const input = `${n}\n${arr.join(' ')}\n`;
+      const output = `${min} ${max}`;
+      return { input, output };
     });
     case 7: return Array.from({ length: 5 }, () => {
       const n = randInt(1, 100);
@@ -78,8 +85,10 @@ async function judgeCCode(code, testCases) {
     return 0;
   }
 
-  let score = 0;
+  const normalize = str => str.replace(/\r/g, '').trim();
+  let passedAll = true;
 
+  // 모든 테스트 케이스를 체크
   for (const tc of testCases) {
     const output = await new Promise((resolve) => {
       const proc = execFile(exe, [], { timeout: 3000, encoding: 'utf8' }, (err, stdout) => {
@@ -89,12 +98,17 @@ async function judgeCCode(code, testCases) {
       proc.stdin.end();
     });
 
-    if (output === tc.output) score++;
+    // 하나라도 틀리면 모든 테스트 케이스 실패로 처리
+    if (normalize(output) !== normalize(tc.output)) {
+      passedAll = false;
+      break;
+    }
   }
 
   cleanupDir(dir);
-  return Math.floor(Math.random() * 4) + 1;
+  return passedAll ? Math.floor(Math.random() * 4) + 1 : 0;
 }
+
 
 // 디렉토리 전체 삭제
 function cleanupDir(dir) {

@@ -119,61 +119,146 @@
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="4" class="problem">
-                <h2>문제 4: 화면에 출력하기</h2>
-                <p>
-                    도현이는 친구를 만나 인사를 합니다.
-                    Hello를 출력하시오.
-                </p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea4" class="ccode" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('5')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert4" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h3>문제 4: 문자열 출력하기.</h3>
+                        <p>
+                            도현이는 길을 가다가 혜연이를 만나 반갑게 인사를 한다.<br>
+                            왠지 Hello라고 말하고 싶어졌다.<br><br>
+                        </p>
+                        <h3>입력</h3>
+                        <p>이 문제는 입력이 없습니다.</p>
+                        <br>
+                        <h3>출력</h3>
+                        <p><strong>Hello</strong>를 출력합니다.</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>Hello</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea4" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('5')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="5" class="problem">
-                <h2>문제 5: 이 텍스트는 문제 5입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea5" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('6')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert5" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h3>문제 5: 반복문으로 별 출력하기.</h3>
+                        <p>
+                            준혜는 코딩을 처음 배워 이것 저것 해보고 싶다.<br>
+                            고민하던 중 이쁜 별 계단을 만들고 싶었다.<br><br>
+                        </p>
+                        <h3>입력</h3>
+                        <p>첫 번째 줄에 계단의 높이를 나타내는 정수 <strong>N</strong>이 주어진다. (1 ≤ N ≤ 100)</p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>
+                            총 <strong>N</strong>줄에 걸쳐 별 계단을 출력한다.<br>
+                            <strong>i</strong>번째 줄에는 별(<strong>*</strong>)이 <strong>i</strong>개 출력되어야 한다.
+                        </p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>3</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>*</p>
+                        <p>**</p>
+                        <p>***</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea5" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('6')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="6" class="problem">
-                <h2>문제 6: 이 텍스트는 문제 6입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea6" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('7')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert6" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h3>문제 6: 최소값과 최대값 찾기.</h3>
+                        <p>
+                            기준이는 오늘도 숫자들을 수집하고 있다.<br>
+                            기준이는 수집한 숫자들 중에 가장 작은 값과 가장 큰 값을 찾고 싶어졌다.<br><br>
+                        </p>
+                        <h3>입력</h3>
+                        <p>첫 번째 줄에 정수 n (1 ≤ n ≤ 100) 이 주어집니다.</p>
+                        <br>
+                        <p>두 번째 줄에 n개의 정수가 주어지며, 각 정수는 공백으로 구분되어 있습니다. (입력되는 정수의 범위는 -1000 이상 1000 이하입니다)</p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>주어진 수들 중 최솟값과 최댓값을 공백으로 구분하여 출력하세요.</p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>5</p>
+                        <p>10 3 5 8 2</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>2 10</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea6" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('7')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="7" class="problem">
-                <h2>문제 7: 이 텍스트는 문제 7입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea7" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('8')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert7" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h3>문제 7: 최소값과 최대값 찾기.</h3>
+                        <p>
+                            기준이는 오늘도 숫자들을 수집하고 있다.<br>
+                            기준이는 수집한 숫자들 중에 가장 작은 값과 가장 큰 값을 찾고 싶어졌다.<br><br>
+                        </p>
+                        <h3>입력</h3>
+                        <p>첫 번째 줄에 정수 n (1 ≤ n ≤ 100) 이 주어집니다.</p>
+                        <br>
+                        <p>두 번째 줄에 n개의 정수가 주어지며, 각 정수는 공백으로 구분되어 있습니다. (입력되는 정수의 범위는 -1000 이상 1000 이하입니다)</p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>주어진 수들 중 최솟값과 최댓값을 공백으로 구분하여 출력하세요.</p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>5</p>
+                        <p>10 3 5 8 2</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>2 10</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea7" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('8')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
