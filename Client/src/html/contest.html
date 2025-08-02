@@ -25,6 +25,17 @@
     <script src="../js/client/clientButton.js" defer></script>
     <script src="../js/problemHtmlControl/contestControl.js" defer></script>
     <script src="../js/codeEditor/codeMirror.js" defer></script>
+    <script type="text/x-mathjax-config">
+
+MathJax.Hub.Config({
+
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+
+});
+
+</script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
 
 <body>
@@ -121,7 +132,7 @@
             <div id="4" class="problem">
                 <div class="problem_wrap">
                     <div class="problem_intro">
-                        <h3>문제 4: 문자열 출력하기.</h3>
+                        <h2>문제 4: 문자열 출력하기.</h2>
                         <p>
                             도현이는 길을 가다가 혜연이를 만나 반갑게 인사를 한다.<br>
                             왠지 Hello라고 말하고 싶어졌다.<br><br>
@@ -130,7 +141,7 @@
                         <p>이 문제는 입력이 없습니다.</p>
                         <br>
                         <h3>출력</h3>
-                        <p><strong>Hello</strong>를 출력합니다.</p>
+                        <p><strong>$Hello$</strong>를 출력합니다.</p>
                         <br>
                         <h3>예시 출력</h3>
                         <p>Hello</p>
@@ -141,8 +152,8 @@
                         <pre id="resultArea"></pre>
                         <button class="submit-btn" onclick="showNextProblem('5')">제출 및 다음 문제</button>
                         <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
                         <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5>⚠️코드는 VS에서 돌려보시고 붙여넣기 하세요!</h5>
                         <h5 id="alert6" class="alertBox"></h5>
                     </div>
                 </div>
@@ -152,18 +163,18 @@
             <div id="5" class="problem">
                 <div class="problem_wrap">
                     <div class="problem_intro">
-                        <h3>문제 5: 반복문으로 별 출력하기.</h3>
+                        <h2>문제 5: 반복문으로 별 출력하기.</h2>
                         <p>
                             준혜는 코딩을 처음 배워 이것 저것 해보고 싶다.<br>
                             고민하던 중 이쁜 별 계단을 만들고 싶었다.<br><br>
                         </p>
                         <h3>입력</h3>
-                        <p>첫 번째 줄에 계단의 높이를 나타내는 정수 <strong>N</strong>이 주어진다. (1 ≤ N ≤ 100)</p>
+                        <p>첫 번째 줄에 계단의 높이를 나타내는 정수 <strong>$N$</strong>이 주어진다. ($1$ $\le$ $N$ $\le$ $100$)</p>
                         <br>
                         <h3>출력</h3>
                         <p>
-                            총 <strong>N</strong>줄에 걸쳐 별 계단을 출력한다.<br>
-                            <strong>i</strong>번째 줄에는 별(<strong>*</strong>)이 <strong>i</strong>개 출력되어야 한다.
+                            총 <strong>$N$</strong>줄에 걸쳐 별 계단을 출력한다.<br>
+                            <strong>$i$</strong>번째 줄에는 별(<strong>$*$</strong>)이 <strong>$i$</strong>개 출력되어야 한다.
                         </p>
                         <br>
                         <h3>예시 입력</h3>
@@ -180,7 +191,6 @@
                         <pre id="resultArea"></pre>
                         <button class="submit-btn" onclick="showNextProblem('6')">제출 및 다음 문제</button>
                         <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
                         <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
                         <h5 id="alert6" class="alertBox"></h5>
                     </div>
@@ -191,15 +201,15 @@
             <div id="6" class="problem">
                 <div class="problem_wrap">
                     <div class="problem_intro">
-                        <h3>문제 6: 최소값과 최대값 찾기.</h3>
+                        <h2>문제 6: 최소값과 최대값 찾기.</h2>
                         <p>
                             기준이는 오늘도 숫자들을 수집하고 있다.<br>
                             기준이는 수집한 숫자들 중에 가장 작은 값과 가장 큰 값을 찾고 싶어졌다.<br><br>
                         </p>
                         <h3>입력</h3>
-                        <p>첫 번째 줄에 정수 n (1 ≤ n ≤ 100) 이 주어집니다.</p>
+                        <p>첫 번째 줄에 정수 $n$ ($1$ $\le$ $n$ $\le$ 100) 이 주어집니다.</p>
                         <br>
-                        <p>두 번째 줄에 n개의 정수가 주어지며, 각 정수는 공백으로 구분되어 있습니다. (입력되는 정수의 범위는 -1000 이상 1000 이하입니다)</p>
+                        <p>두 번째 줄에 $n$개의 정수가 주어지며, 각 정수는 공백으로 구분되어 있습니다. (입력되는 정수의 범위는 -1000 이상 1000 이하입니다)</p>
                         <br>
                         <h3>출력</h3>
                         <p>주어진 수들 중 최솟값과 최댓값을 공백으로 구분하여 출력하세요.</p>
@@ -217,7 +227,6 @@
                         <pre id="resultArea"></pre>
                         <button class="submit-btn" onclick="showNextProblem('7')">제출 및 다음 문제</button>
                         <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
                         <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
                         <h5 id="alert6" class="alertBox"></h5>
                     </div>
@@ -228,25 +237,27 @@
             <div id="7" class="problem">
                 <div class="problem_wrap">
                     <div class="problem_intro">
-                        <h3>문제 7: 최소값과 최대값 찾기.</h3>
+                        <h2>문제 7: 포인터 참조에 의한 호출.</h2>
                         <p>
-                            기준이는 오늘도 숫자들을 수집하고 있다.<br>
-                            기준이는 수집한 숫자들 중에 가장 작은 값과 가장 큰 값을 찾고 싶어졌다.<br><br>
+                            혜연이와 상훈이는 시험 성적을 확인했다.<br>
+                            혜연이는 높은 성적을 받은 상훈이의 성적과 몰래 바꾸기로 했다.<br>
+                            당신은 혜연이의 계획을 위해 swap 함수를 구현해야 한다.<br>
+                            이 함수는 포인터를 이용해서 서로의 성적을 바꿔야 한다.<br>
                         </p>
                         <h3>입력</h3>
-                        <p>첫 번째 줄에 정수 n (1 ≤ n ≤ 100) 이 주어집니다.</p>
-                        <br>
-                        <p>두 번째 줄에 n개의 정수가 주어지며, 각 정수는 공백으로 구분되어 있습니다. (입력되는 정수의 범위는 -1000 이상 1000 이하입니다)</p>
+                        <p>첫 번째 줄에 공백을 기준으로 두 개의 정수 <strong>$a$</strong>, <strong>$b$</strong>가 주어진다. ($-1,000$ $\le$ $a$, $b$ $\le$
+                            $1,000$)</p>
                         <br>
                         <h3>출력</h3>
-                        <p>주어진 수들 중 최솟값과 최댓값을 공백으로 구분하여 출력하세요.</p>
+                        <p>포인터를 이용하여 두 정수의 값을 교환한 뒤, 한 줄에 출력하시오.<br>
+                            먼저 바뀐 <strong>$a$</strong>의 값을 출력하고, 공백 후 바뀐 <strong>$b$</strong>의 값을 출력한다.
+                        </p>
                         <br>
                         <h3>예시 입력</h3>
-                        <p>5</p>
-                        <p>10 3 5 8 2</p>
+                        <p>7 42</p>
                         <br>
                         <h3>예시 출력</h3>
-                        <p>2 10</p>
+                        <p>42 7</p>
                     </div>
                     <div class="problem_c_editor">
                         <h3>C 코드 입력</h3>
@@ -254,7 +265,6 @@
                         <pre id="resultArea"></pre>
                         <button class="submit-btn" onclick="showNextProblem('8')">제출 및 다음 문제</button>
                         <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                        <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
                         <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
                         <h5 id="alert6" class="alertBox"></h5>
                     </div>
@@ -263,44 +273,126 @@
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="8" class="problem">
-                <h2>문제 8: 이 텍스트는 문제 8입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea8" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('9')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert8" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h2>문제 8: 문자열 인덱싱.</h2>
+                        <p>
+                            하연이는 문자열을 유심히 살펴보다가, 그 중 한 글자가 궁금해졌다.<br>
+                            문자열에서 특정 위치에 있는 글자를 뽑아보는 프로그램을 작성해보자.<br>
+                        </p>
+                        <br>
+                        <h3>입력</h3>
+                        <p>
+                            첫째 줄에 소문자와 대문자로만 이루어진 문자열 <strong>$S$</strong>가 주어진다.<br>
+                            둘째 줄에는 정수 <strong>$i$</strong>가 주어진다.($1$ $\le$ $i$ $\le$ $|S|$)<br>
+                        </p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>
+                            $S$의 $i$번째 글자를 출력한다.
+                        </p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>Kijoon</p>
+                        <p>3</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>j</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea8" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('9')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="9" class="problem">
-                <h2>문제 9: 이 텍스트는 문제 9입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea9" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('10')">제출 및 다음 문제</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert9" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h2>문제 9: 평균 이상 점수 찾기.</h2>
+                        <p>
+                            신입 교사 지민이는 학생들의 시험 점수를 분석하던 중,<br>
+                            평균 이상의 성적을 받은 학생이 몇 명인지 궁금해졌다.<br><br>
+                            지민이는 먼저 학생들의 점수를 모두 입력받아 평균을 구한 다음,<br>
+                            평균 이상인 학생의 수를 세는 프로그램을 작성해 보기로 했다.<br>
+                        </p>
+                        <br>
+                        <h3>입력</h3>
+                        <p>
+                            첫째 줄에는 학생 수 <strong>$N$</strong>이 주어진다. ($1$ $\le$ $N$ $\le$ $100$)<br>
+                            둘째 줄에는 공백으로 구분된 $N$개의 정수로 학생들의 점수 $S$가 주어진다. ($0$ $\le$ $S$ $\le$ $100$)<br>
+                        </p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>
+                            평균 이상 점수를 받은 학생의 <strong>수</strong>를 출력한다.
+                        </p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>5</p>
+                        <p>50 60 70 80 90</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>3</p>
+                        <p style="color: gray;">//평균은 70이고, 70 이상은 70, 80, 90 -> 3명</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea9" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('10')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
             <!-- 문제 3 (추가할 문제) -->
             <div id="10" class="problem">
-                <h2>문제 10: 이 텍스트는 문제 10입니다.</h2>
-                <p>문제를 풀어주세요!</p>
-                <h2>C 코드 입력</h2>
-                <textarea id="codeArea10" rows="15" cols="80"></textarea><br>
-                <pre id="resultArea"></pre>
-                <button class="submit-btn" onclick="showNextProblem('problem4')">제출 및 종료</button>
-                <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
-                <h5>⚠️공백 없이 숫자만 적어주세요!</h5>
-                <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
-                <h5 id="alert10" class="alertBox"></h5>
+                <div class="problem_wrap">
+                    <div class="problem_intro">
+                        <h2>문제 9: 뒤집어진 숫자 비교하기.</h2>
+                        <p>
+                            윤성이는 거꾸로 보는 것을 좋아한다.<br>
+                            그래서 오늘은 숫자를 거꾸로 뒤집은 다음 , 그 중 더 큰 숫자를 찾는 게임을 하기로 했다.<br>
+                            <br>
+                            윤성이는 두 개의 숫자를 받아서 각 숫자의 자릿수를 반대로 뒤집고,<br>
+                            그 중 더 큰 값을 출력하고자 한다.<br>
+                        </p>
+                        <br>
+                        <h3>입력</h3>
+                        <p>
+                            한 줄에 공백으로 구분된 두 개의 정수 <strong>$A$</strong>와 <strong>$B$</strong>가 주어진다. ($100$ $\le$ $A$, $B$ $\le$ $999$)<br>
+                        </p>
+                        <br>
+                        <h3>출력</h3>
+                        <p>
+                            <strong>$A$</strong>와 <strong>$B$</strong>를 각각 뒤집었을 때 더 큰 값을 출력한다.
+                        </p>
+                        <br>
+                        <h3>예시 입력</h3>
+                        <p>734 893</p>
+                        <br>
+                        <h3>예시 출력</h3>
+                        <p>437</p>
+                    </div>
+                    <div class="problem_c_editor">
+                        <h3>C 코드 입력</h3>
+                        <textarea id="codeArea10" rows="15" cols="80"></textarea><br>
+                        <pre id="resultArea"></pre>
+                        <button class="submit-btn" onclick="showNextProblem('10')">제출 및 다음 문제</button>
+                        <h5>⚠️모든 문제는 1~4점 랜덤 부여됩니다.</h5>
+                        <h5>⚠️제출 버튼을 누르면 뒤로 돌아갈 수 없습니다!</h5>
+                        <h5 id="alert6" class="alertBox"></h5>
+                    </div>
+                </div>
             </div>
 
         </div>
