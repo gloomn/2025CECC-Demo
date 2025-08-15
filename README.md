@@ -3,7 +3,7 @@
 # 2025 Computer Education Coding Contest Server & Client Demo
 
 ## Teck Stack:
-- Langauge: HTML, CSS, JS
+- Langauge: HTML, CSS, JS, Python(server load test)
 - FrameWork: Electron.js
 - C Compiler: portable-gcc
 
